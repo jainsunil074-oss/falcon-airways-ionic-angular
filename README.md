@@ -2,7 +2,7 @@
 
 ![Ionic 9](https://img.shields.io/badge/Ionic-9-3880ff) ![Angular 22](https://img.shields.io/badge/Angular-22-dd0031) ![Capacitor 8](https://img.shields.io/badge/Capacitor-8-119eff) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6) ![Kotlin](https://img.shields.io/badge/Android-Kotlin-7f52ff) ![Swift](https://img.shields.io/badge/iOS-Swift%20%2B%20WKWebView-f05138)
 
-**▶ Live demo:** https://YOUR-GITHUB-USERNAME.github.io/falcon-airways-ionic-angular/ — best viewed on a phone, or in Chrome DevTools mobile view.
+**▶ Live demo:** https://jainsunil074-oss.github.io/falcon-airways-ionic-angular/ — best viewed on a phone, or in Chrome DevTools mobile view.
 
 A portfolio app for a **fictional airline** (hub: Abu Dhabi), built to demonstrate hybrid mobile engineering
 with **Ionic 9 + Angular 22 + Capacitor 8**. The focus is on running web content inside a mobile app the right way:
