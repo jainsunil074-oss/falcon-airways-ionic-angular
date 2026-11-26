@@ -1,0 +1,49 @@
+ion-card-title {
+  font-size: 1.1rem;
+}
+
+.frame {
+  margin: 8px 0;
+  border: 1px solid var(--ion-color-light-shade);
+  border-radius: var(--fa-radius);
+  overflow: hidden;
+}
+
+.log {
+  margin: 0 16px 32px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+  min-height: 80px;
+}
+
+.time {
+  color: #64748b;
+  margin-inline-end: 6px;
+}
+
+.ch {
+  display: inline-block;
+  min-width: 58px;
+  font-weight: 600;
+
+  &.iframe {
+    color: #38bdf8;
+  }
+  &.native {
+    color: #a78bfa;
+  }
+  &.browser {
+    color: #4ade80;
+  }
+  &.security {
+    color: #fbbf24;
+  }
+}

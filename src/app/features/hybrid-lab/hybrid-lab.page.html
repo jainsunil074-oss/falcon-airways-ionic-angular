@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/tabs/more" /></ion-buttons>
+    <ion-title>Hybrid / WebView lab</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fa-surface">
+  <ion-card class="fa-card">
+    <ion-card-header>
+      <ion-card-title>{{ env.engine }}</ion-card-title>
+      <ion-card-subtitle>Runtime</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Platform <strong>{{ env.platform }}</strong> · {{ env.native ? 'Capacitor native shell' : 'browser (ng serve)' }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="fa-card">
+    <ion-card-header>
+      <ion-card-title>Offers web module</ion-card-title>
+      <ion-card-subtitle>1 · Embedded iframe + postMessage bridge</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Sandboxed iframe, origin-checked messages, schema validation, auto-resize.</p>
+      <div class="frame">
+        <fa-secure-webview src="web/offers.html" [context]="context()" [initialHeight]="320" (message)="onIframeMessage($event)" />
+      </div>
+      <ion-button size="small" (click)="ping()">Ping page (measure round-trip)</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="fa-card">
+    <ion-card-header>
+      <ion-card-title>Native WebView (WKWebView / Android WebView)</ion-card-title>
+      <ion-card-subtitle>2 · Custom Capacitor plugin</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Opens a second, isolated native WebView with an injected JS bridge and native URL allowlist.</p>
+      @if (nativeOpen()) {
+        <ion-button size="small" color="medium" (click)="closeNative()">Close native WebView</ion-button>
+      } @else {
+        <ion-button size="small" (click)="openNative()"><ion-icon slot="start" name="layers-outline" />Open native WebView</ion-button>
+      }
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="fa-card">
+    <ion-card-header>
+      <ion-card-title>SFSafariViewController / Custom Tabs</ion-card-title>
+      <ion-card-subtitle>3 · System browser sheet</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>For pages that don't need to talk to the app.</p>
+      <ion-button size="small" (click)="openBrowser('https://en.wikipedia.org/wiki/WebKit')">
+        <ion-icon slot="start" name="open-outline" />Open allowed URL
+      </ion-button>
+      <ion-button size="small" color="danger" fill="outline" (click)="openBrowser('http://evil.example')">Try blocked URL</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="fa-card">
+    <ion-card-header>
+      <ion-card-title>What the bridge rejects</ion-card-title>
+      <ion-card-subtitle>4 · Security checks</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button size="small" color="warning" (click)="forgeMessage()">Send forged payment message</ion-button>
+      <p class="fa-muted">Non-allowlisted URL in the iframe component:</p>
+      <fa-secure-webview [src]="blockedUrl" [context]="context()" [initialHeight]="60" />
+    </ion-card-content>
+  </ion-card>
+
+  <div class="fa-section-title fa-row">
+    <span>Bridge log</span><span class="fa-spacer"></span>
+    <ion-button size="small" fill="clear" (click)="clearLog()">Clear</ion-button>
+  </div>
+  <div class="log">
+    @for (e of log(); track $index) {
+      <div><span class="time">{{ e.at | date: 'HH:mm:ss' }}</span> <span class="ch {{ e.channel }}">{{ e.channel }}</span> {{ e.text }}</div>
+    } @empty {
+      <div class="fa-muted">Interact with a card to see messages.</div>
+    }
+  </div>
+</ion-content>
