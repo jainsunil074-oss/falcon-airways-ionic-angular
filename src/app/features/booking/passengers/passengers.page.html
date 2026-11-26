@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/tabs/book/results" /></ion-buttons>
+    <ion-title>{{ 'passengers.title' | t }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fa-surface">
+  @if (store.flight(); as flight) {
+    <fa-flight-card [flight]="flight" />
+  }
+
+  <form [formGroup]="form" (ngSubmit)="continue()">
+    <ng-container formArrayName="passengers">
+      @for (group of passengers.controls; track $index; let i = $index) {
+        <ion-list [inset]="true" [formGroupName]="i">
+          <ion-list-header>
+            <ion-label>{{ 'passengers.passenger' | t }} {{ i + 1 }}</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-select label="Title" labelPlacement="stacked" formControlName="title">
+              @for (t of titles; track t) {
+                <ion-select-option [value]="t">{{ t }}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-input [label]="'passengers.firstName' | t" labelPlacement="stacked" formControlName="firstName"
+              autocomplete="given-name" errorText="2–40 letters" />
+          </ion-item>
+          <ion-item>
+            <ion-input [label]="'passengers.lastName' | t" labelPlacement="stacked" formControlName="lastName"
+              autocomplete="family-name" errorText="2–40 letters" />
+          </ion-item>
+          <ion-item>
+            <ion-input type="email" [label]="'passengers.email' | t" labelPlacement="stacked" formControlName="email"
+              autocomplete="email" errorText="Enter a valid email" />
+          </ion-item>
+          <ion-item>
+            <ion-input type="tel" [label]="'passengers.phone' | t" labelPlacement="stacked" formControlName="phone"
+              autocomplete="tel" placeholder="+971 50 123 4567" errorText="Enter a valid number" />
+          </ion-item>
+          <ion-item>
+            <ion-input [label]="'passengers.passport' | t" labelPlacement="stacked" formControlName="passportNumber"
+              autocapitalize="characters" errorText="6–9 letters/digits" />
+          </ion-item>
+        </ion-list>
+      }
+    </ng-container>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="ion-padding-horizontal fa-row">
+      <strong>{{ 'common.aed' | t }} {{ store.total() | number: '1.0-0' }}</strong>
+      <span class="fa-spacer"></span>
+      <ion-button (click)="continue()">{{ 'passengers.toPayment' | t }}</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

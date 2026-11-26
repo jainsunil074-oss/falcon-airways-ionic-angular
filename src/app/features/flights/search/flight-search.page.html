@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ 'search.title' | t }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fa-surface">
+  <form [formGroup]="form" (ngSubmit)="search()">
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-select [label]="'search.from' | t" labelPlacement="stacked" formControlName="from" interface="action-sheet">
+          @for (a of airports; track a.code) {
+            <ion-select-option [value]="a.code">
+              {{ a.code }} · {{ settings.language() === 'ar' ? a.cityAr : a.city }}
+            </ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="swap">
+      <ion-button shape="round" color="tertiary" (click)="swap()" [attr.aria-label]="'search.swap' | t">
+        <ion-icon slot="icon-only" name="swap-vertical" />
+      </ion-button>
+    </div>
+
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-select [label]="'search.to' | t" labelPlacement="stacked" formControlName="to" interface="action-sheet">
+          @for (a of airports; track a.code) {
+            <ion-select-option [value]="a.code">
+              {{ a.code }} · {{ settings.language() === 'ar' ? a.cityAr : a.city }}
+            </ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    @if (form.hasError('sameAirport')) {
+      <p class="ion-padding-horizontal" style="color: var(--ion-color-danger)">Origin and destination must differ.</p>
+    }
+
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-input type="date" [min]="today" [label]="'search.date' | t" labelPlacement="stacked" formControlName="date" />
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="number"
+          inputmode="numeric"
+          min="1"
+          max="9"
+          [label]="'search.passengers' | t"
+          labelPlacement="stacked"
+          formControlName="passengers"
+        />
+      </ion-item>
+    </ion-list>
+
+    <ion-segment formControlName="cabin">
+      @for (c of cabins; track c) {
+        <ion-segment-button [value]="c">
+          <ion-label>{{ cabinKey(c) | t }}</ion-label>
+        </ion-segment-button>
+      }
+    </ion-segment>
+
+    <div class="submit">
+      <ion-button expand="block" type="submit" size="large" [disabled]="form.invalid">
+        <ion-icon slot="start" name="search-outline" />
+        {{ 'search.submit' | t }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
