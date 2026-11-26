@@ -1,0 +1,36 @@
+<ion-content class="fa-surface" [fullscreen]="true">
+  <header class="hero">
+    <div class="brand"><ion-icon name="airplane" class="fa-flip-rtl" /> Falcon Airways</div>
+    <h1>{{ 'home.greeting' | t }}</h1>
+    <p>{{ 'home.subtitle' | t }}</p>
+  </header>
+
+  <div class="fa-section-title">{{ 'home.quick' | t }}</div>
+  <nav class="actions">
+    @for (a of actions; track a.link) {
+      <a class="action ion-activatable" [routerLink]="a.link">
+        <ion-icon [name]="a.icon" />
+        <span>{{ a.label | t }}</span>
+        <ion-ripple-effect />
+      </a>
+    }
+  </nav>
+
+  @if (nextTrip(); as trip) {
+    <div class="fa-section-title">{{ 'home.nextTrip' | t }} · {{ trip.pnr }}</div>
+    <a [routerLink]="['/trips', trip.pnr]" class="plain-link">
+      <fa-flight-card [flight]="trip.flight" [showPrice]="false" />
+    </a>
+  }
+
+  <div class="fa-section-title">{{ 'home.offers' | t }}</div>
+  <div class="offers">
+    <fa-secure-webview
+      src="web/offers.html"
+      title="Offers"
+      [context]="offersContext()"
+      [initialHeight]="360"
+      (message)="onOffersMessage($event)"
+    />
+  </div>
+</ion-content>
