@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/tabs/trips" /></ion-buttons>
+    <ion-title>PNR {{ pnr() }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fa-surface">
+  @if (trip(); as t) {
+    <fa-flight-card [flight]="t.flight" [showPrice]="false" />
+
+    @if (t.checkedIn) {
+      <section class="pass">
+        <header>
+          <span>Falcon Airways</span>
+          <span>{{ 'trips.boardingPass' | t }}</span>
+        </header>
+        <div class="route">
+          <div><small>{{ t.flight.from.city }}</small><strong>{{ t.flight.from.code }}</strong></div>
+          <ion-icon name="airplane" class="fa-flip-rtl" />
+          <div class="end"><small>{{ t.flight.to.city }}</small><strong>{{ t.flight.to.code }}</strong></div>
+        </div>
+        <div class="grid">
+          <div><small>Passenger</small>{{ t.passengers[0].firstName }} {{ t.passengers[0].lastName }}</div>
+          <div><small>Flight</small>{{ t.flight.flightNumber }}</div>
+          <div><small>{{ 'trips.seat' | t }}</small>{{ t.seat }}</div>
+          <div><small>{{ 'trips.boarding' | t }}</small>{{ boardingTime() | date: 'HH:mm' }}</div>
+          <div><small>Date</small>{{ t.flight.departure | date: 'd MMM' }}</div>
+          <div><small>{{ 'trips.gate' | t }}</small>—</div>
+        </div>
+        <div class="qr">
+          @if (qr(); as src) {
+            <img [src]="src" alt="Boarding pass QR code" width="200" height="200" />
+          }
+        </div>
+      </section>
+    } @else {
+      <div class="ion-padding">
+        <ion-button expand="block" [routerLink]="['/check-in', t.pnr]">
+          <ion-icon slot="start" name="checkmark-circle" />
+          {{ 'trips.checkIn' | t }}
+        </ion-button>
+        <p class="fa-muted ion-text-center">Check-in opens a web module inside the app.</p>
+      </div>
+    }
+  } @else {
+    <p class="ion-padding fa-muted">Trip not found.</p>
+  }
+</ion-content>
