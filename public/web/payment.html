@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Hosted modules ship their own strict CSP: no inline scripts, no third-party code.
+         In production also send "Content-Security-Policy: frame-ancestors" as an HTTP header
+         so only the app may embed this page (it cannot be set from a meta tag). -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'"
+    />
+    <title>Falcon Pay</title>
+    <link rel="stylesheet" href="module.css" />
+  </head>
+  <body>
+    <h1 data-i18n="title">Falcon Pay</h1>
+    <span class="badge" id="transport">web module</span>
+    <div class="total"><span data-i18n="amount">Amount due</span><strong id="amount">—</strong></div>
+    <p class="muted" data-i18n="demo">Demo only — use any 16-digit number. No real payment is made.</p>
+
+    <form id="pay-form" novalidate>
+      <label for="card" data-i18n="card">Card number</label>
+      <input id="card" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="4111 1111 1111 1111" />
+      <div class="row">
+        <div>
+          <label for="exp" data-i18n="exp">Expiry</label>
+          <input id="exp" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" />
+        </div>
+        <div>
+          <label for="cvv">CVV</label>
+          <input id="cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="123" />
+        </div>
+      </div>
+      <button id="pay" type="submit" data-i18n="pay">Pay now</button>
+      <button id="fail" type="button" class="secondary" data-i18n="simulateFail">Simulate declined card</button>
+    </form>
+
+    <script src="falcon-bridge.js"></script>
+    <script src="i18n.js"></script>
+    <script src="payment.js"></script>
+  </body>
+</html>
