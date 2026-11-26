@@ -1,0 +1,33 @@
+// Falcon Airways brand palette (fictional brand) mapped onto Ionic CSS variables.
+:root {
+  --ion-font-family: 'Inter', 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif;
+
+  --ion-color-primary: #8a6d3b;
+  --ion-color-primary-rgb: 138, 109, 59;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #7a6034;
+  --ion-color-primary-tint: #967c4f;
+
+  --ion-color-secondary: #1f2a44;
+  --ion-color-secondary-rgb: 31, 42, 68;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #1b253c;
+  --ion-color-secondary-tint: #353f57;
+
+  --ion-color-tertiary: #c9a96e;
+  --ion-color-tertiary-rgb: 201, 169, 110;
+  --ion-color-tertiary-contrast: #1f2a44;
+  --ion-color-tertiary-contrast-rgb: 31, 42, 68;
+  --ion-color-tertiary-shade: #b19561;
+  --ion-color-tertiary-tint: #ceb27d;
+
+  --fa-radius: 16px;
+  --fa-surface: #faf7f2;
+  --fa-hero-gradient: linear-gradient(135deg, #1f2a44 0%, #3b4a6b 55%, #8a6d3b 100%);
+}
+
+.ion-palette-dark {
+  --fa-surface: #1c1f26;
+}

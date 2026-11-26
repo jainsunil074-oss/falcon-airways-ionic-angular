@@ -1,0 +1,47 @@
+{
+  "name": "falcon-airways",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test --watch=false",
+    "native:install": "node scripts/install-native.mjs",
+    "cap:sync": "ng build && npx cap sync",
+    "android": "ng build && npx cap sync android && npx cap open android",
+    "ios": "ng build && npx cap sync ios && npx cap open ios"
+  },
+  "private": true,
+  "packageManager": "npm@10.9.9",
+  "dependencies": {
+    "@angular/common": "^22.3.0",
+    "@angular/compiler": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/browser": "^8.0.5",
+    "@capacitor/core": "^8.6.3",
+    "@capacitor/network": "^8.0.1",
+    "@capacitor/preferences": "^8.0.1",
+    "@ionic/angular": "^9.0.14",
+    "ionicons": "^8.1.1",
+    "qrcode": "^1.5.4",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.3"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.3.0",
+    "@angular/cli": "^22.3.0",
+    "@angular/compiler-cli": "^22.3.0",
+    "@capacitor/cli": "^8.6.3",
+    "@types/qrcode": "^1.5.6",
+    "jsdom": "^31.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.0"
+  }
+}

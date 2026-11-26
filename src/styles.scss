@@ -1,0 +1,47 @@
+// Global styles. Component styles stay in their own files (view encapsulation).
+
+ion-content.fa-surface {
+  --background: var(--fa-surface);
+}
+
+.fa-card {
+  border-radius: var(--fa-radius);
+  margin: 12px 16px;
+}
+
+.fa-section-title {
+  margin: 20px 16px 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ion-color-medium);
+}
+
+.fa-muted {
+  color: var(--ion-color-medium);
+}
+
+.fa-offline-banner {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  text-align: center;
+  background: var(--ion-color-warning);
+  color: var(--ion-color-warning-contrast);
+}
+
+// Logical properties keep spacing correct in both LTR (English) and RTL (Arabic).
+.fa-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fa-spacer {
+  flex: 1;
+}
+
+// Mirror directional icons (arrows) when the document is RTL.
+[dir='rtl'] .fa-flip-rtl {
+  transform: scaleX(-1);
+}
