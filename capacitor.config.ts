@@ -20,7 +20,7 @@ const config: CapacitorConfig = {
   ios: {
     // WKWebView: let content flow under the notch; Ionic handles safe areas.
     contentInset: 'never',
-    limitsNavigationsToAppBoundDomains: true,
+    limitsNavigationsToAppBoundDomains: false,
   },
 };
 
